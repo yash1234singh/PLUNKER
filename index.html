@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <title>CASP Label Config</title>
+            <!-- CSS -->
+
+            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc1/angular-material.min.css">
+             <link rel="stylesheet" type="text/css" href="style.css">
+                    <!-- JS -->
+                    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc1/angular-material.min.js"></script>
+                    <script src="script.js"></script>
+                </head>
+                
+                <body>
+
+                  
+                 <header>
+        <md-toolbar class='md-medium-tall'>
+          <div class="md-toolbar-tools">
+             <img src="img/icons/angular-logo.svg" alt="" />
+              <h1>Fixed to Top</h1>
+              <span flex></span>
+          </div>
+        </md-toolbar>
+    </header> 
+                    <md-card layout="row">
+                        <div class="md-toolbar-tools">
+                            <h1>CASP Configuration</h1>
+                        </div>
+                    </md-card>
+                    <p></p>
+                    <p></p>
+
+                    <div ng-app="labelConfApp" ng-controller="labelConfController">
+                        <div>
+                            <md-content  class="md-padding">
+                              <md-card>
+                                <div >
+                                    <md-input-container flex="">
+                                        <label> Gogo Label Name</label>
+                                        <input type="text"  placeholder="Search Label" ng-model="searchLabel">
+                                        </md-input-container>
+                                        <div>
+                                            <div>
+                                                <md-button ng-click="updateLabel()" class="md-raised md-primary">
+                                                Update
+                                                </md-button>
+                                            </div>
+                                            <div>
+                                                <b>
+                                                    <p>
+                                                      {{updateStatus}}
+                                                    </p>
+                                                    <p>
+                                                      {{errorStatus}}
+                                                    </p>
+                                                </b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </md-card>
+                                    <p></p>
+                                    <div>
+                                          <md-card>
+                                            <table style="table-layout: fixed; width: 100%" class="table-hover table-mc-light-blue ">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="md-table-header">
+                                                            <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">GogoLabelName  </a>
+                                                        </th>
+                                                        <th class="md-table-header">
+                                                            <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">Select Label </a>
+                                                        </th>
+                                                        <th class="md-table-header">
+                                                            <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">Select Port </a>
+                                                        </th>
+                                                        <th class="md-table-header"> &nbsp;&nbsp; &nbsp;&nbsp; Current value </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="label in gogoLabels | filter:searchLabel | orderBy:sortType:sortReverse">
+         
+                                                        <td style="word-wrap: break-word">
+                                                         {{ label.name }}
+                                                        </td>
+                                                        <td>
+                                                            <md-input-container style="margin-right: 20px;">
+                                                                <md-select ng-model="label.selectedId">
+                                                                    <md-option ng-repeat="id in label.labelid" value="{{id}}">{{id}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+                                                        </td>
+                                                        <td>
+                                                            <md-input-container style="margin-right: 10px;">
+                                                                <md-select ng-model="label.port">
+                                                                    <md-option ng-repeat=" no in ports" value="{{no}}">{{no}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+                                                        </td>
+                                                        <td class="md-padding">
+                                                        {{ label.cdata }}
+                                                        </td>
+      
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            </md-card>
+                                    </div>
+                                </md-content> 
+                            </div>
+                        </div>
+     <md-toolbar class="md-table-footer-item md-medium-tall">
+        <div layout="row" layout-align="center center" flex>
+          <span><h6 id="regional" align="center">  2012 Aircell, LLC Phone: +1.888.286.9876 (USA toll-free)
+				or +1.303.301.3278 (Worldwide)<a href="mailto:techsupport-co@aircell.com">
+				techsupport&#45;co&#64;aircell.com</a></h6>
+				</span>
+        </div>
+      </md-toolbar>
+
+                    </body>
+                </html>
